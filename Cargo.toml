@@ -1,0 +1,31 @@
+[package]
+name = "lua-rs"
+version = "0.1.0"
+edition = "2021"
+
+description = "A wrapper library for embedding LUA into a Rust application."
+license = "MIT"
+
+authors = [ "Robert Anderson (https://shiftylogic.dev)" ]
+homepage = "https://www.shiftylogic.dev"
+repository = "https::github.com/shiftylogic/lua-rs"
+
+
+# We need minor optimizations on for our code...
+[profile.dev]
+opt-level = 1
+
+# But some libraries need full optimizations, or slow happens.
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+lto = true
+codegen-units = 1
+
+
+[dependencies]
+
+
+[[example]]
+name = "basic"
