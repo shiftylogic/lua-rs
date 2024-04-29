@@ -7,3 +7,5 @@
 # Tooling artifacts
 .tools
 
+# Cargo crates should not check-in Cargo.lock
+Cargo.lock

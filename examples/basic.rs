@@ -6,6 +6,12 @@
  *
  */
 
+use lua_sandbox::LuaRuntime;
+
 fn main() {
-    lua_rs::do_it();
+    let rt = LuaRuntime::new().expect("lua runtime failure");
+
+    println!("Lua Version: {}", rt.version_string());
+
+    rt.openlibs();
 }

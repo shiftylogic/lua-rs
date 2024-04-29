@@ -1,5 +1,5 @@
 [package]
-name = "lua-rs"
+name = "lua-sandbox"
 version = "0.1.0"
 edition = "2021"
 
@@ -25,6 +25,10 @@ codegen-units = 1
 
 
 [dependencies]
+
+
+[build-dependencies]
+cc = "1.0.95"
 
 
 [[example]]
