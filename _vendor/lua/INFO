@@ -1,0 +1,103 @@
+Version: 5.4.6
+Source: https://www.lua.org/versions.html#5.4
+
+Files Removed:
+    - lua.c
+    - luac.c
+    - lua.hpp
+
+Files Changed:
+    - luaconf.h
+        * Remove:
+            -> Entire chunk defining 'LUA_PATH_DEFAULT'.
+    - loadlib.c
+        * Remove:
+            -> setprogdir define
+            -> 'LUA_PATH_VAR' define
+            -> noenv
+            -> setpath
+            -> 'CLIB' definition
+            -> 'lsys_unloadlib' forward declaration
+            -> 'lsys_load' forward declaration
+            -> 'lsys_sym' forward declaration
+            -> 'LUA_CPATH_VAR' define
+            -> entire LUA_USE_DLOPEN / LUA_DL_DLL / ELSE sections
+            -> checkclib
+            -> addtoclib
+            -> gctm
+            -> ERRLIB define
+            -> ERRFUNC define
+            -> lookforfunc
+            -> ll_loadlib
+            -> loadfunc
+            -> searcher_C
+            -> searcher_Croot
+            -> createsearchertable
+            -> createclibtable
+        * Edit findfile:
+            -> Hardcoded 'path'
+                Remove 'path' argument
+                Remove 'path' field read
+                Create local path const string
+        * Edit searcher_Lua:
+            -> Remove "path" argument in findfile call.
+            -> call 'luaL_loadfilex' instead of 'luaL_loadfile' forcing text chunks.
+        * Edit findloader:
+            -> Remove 'searcher' lookup
+            -> Iterate a set of hardcoded searcher functions (manually pushing C closures).
+        * Edit pk_funcs to remove:
+            -> loadlib
+            -> config
+            -> cpath
+            -> path
+        * Edit luaopen_package:
+            -> remove call to 'createclibtable'
+            -> remove createsearcherstable (hardcoded module discovery above)
+            -> remove call to 'setpath(..., "cpath", ...")'
+            -> remove call to 'setpath(..., "path", ...")'
+            -> remove config field
+    - lbaselib.c
+        * Remove:
+            -> Script loading via 'loadfile':
+                (load_aux, loadB_loadfile)
+            -> Generic Script loading:
+                (generic_reader, luaB_load)
+            -> 'dofile' functionality
+                (dofilecont, luaB_dofile)
+        * Edit base_funcs to remove:
+            -> dofile
+            -> loadfile
+            -> load
+    - linit.c
+        * Edit loadedlibs to remove:
+            -> io
+            -> debug
+    - liolib.c
+        * Delete entire file
+    - lualib.h
+        * Remove 'LUA_IOLIBNAME' define
+        * Remove luaopen_io definition.
+    - loslib.c
+        * Remove:
+            -> l_system define
+            -> os_execute
+            -> os_remove
+            -> os_rename
+            -> os_tmpname
+            -> os_getenv
+            -> os_setlocale
+            -> os_exit
+        * Edit syslib to remove:
+            -> execute
+            -> exit
+            -> getenv
+            -> remove
+            -> rename
+            -> setlocale
+            -> tmpname
+    - lstrlib.c
+        * Remove:
+            -> str_rep
+        * Edit strlib to remove:
+            -> rep
+

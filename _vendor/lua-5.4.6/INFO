@@ -1,9 +1,0 @@
-Version: 5.4.6
-Source: https://www.lua.org/versions.html#5.4
-
-Files Removed:
-    - lua.c
-    - luac.c
-    - lua.hpp
-
-Files Changed:

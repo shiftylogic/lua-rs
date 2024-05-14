@@ -13,6 +13,5 @@
 mod version;
 
 mod state;
-mod types;
 
 pub(crate) use state::LuaState;
